@@ -1,0 +1,28 @@
+{
+  "name": "binary-search-tree",
+  "version": "1.0.0",
+  "description": "Building a balanced binary search tree from an ordered array",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwgrossberg/binary-search-tree.git"
+  },
+  "keywords": [],
+  "author": "Daniel Grossberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dwgrossberg/binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/dwgrossberg/binary-search-tree#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.10",
+    "eslint": "^8.22.0",
+    "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+  }
+}
