@@ -4,7 +4,7 @@
   "description": "Building a balanced binary search tree from an ordered array",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",
     "eslint": "^8.22.0",
+    "jest": "^29.0.0",
     "prettier": "2.7.1"
   },
   "dependencies": {
