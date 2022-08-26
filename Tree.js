@@ -4,7 +4,7 @@ import Node from "./Node";
 const Tree = (inputArray) => {
   const buildTree = (arr, start, end) => {
     // base case
-    if (end > start) return;
+    if (start > end) return;
     // find the middle
     const mid = Math.floor((start + end) / 2);
     const root = Node(arr[mid]);
@@ -15,29 +15,17 @@ const Tree = (inputArray) => {
     return root;
   };
 
-  const prettyPrint = (node, prefix = "", isLeft = true) => {
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-  };
-
-  //   prettyPrint(root);
-
   const array = [...new Set(mergeSort(inputArray))];
   const root = buildTree(array, 0, array.length - 1);
   const preOrderData = [];
   const inOrderData = [];
   const postOrderData = [];
 
+  console.log(array, root);
+
   return {
     array,
     root,
-    sortArray,
-    buildTree,
   };
 };
 
