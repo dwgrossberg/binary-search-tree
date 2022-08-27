@@ -63,6 +63,17 @@ const Tree = (inputArray) => {
     return minV;
   };
 
+  const find = (root, value) => {
+    if (root === null) return false;
+    if (root.data === value) return root;
+    if (root.data > value) {
+      return find(root.leftChild, value);
+    } else if (root.data < value) {
+      return find(root.rightChild, value);
+    }
+    return root;
+  };
+
   const array = [...new Set(mergeSort(inputArray))];
   let root = buildTree(array, 0, array.length - 1);
   const preOrderData = [];
@@ -74,6 +85,7 @@ const Tree = (inputArray) => {
     root,
     insertVal,
     deleteVal,
+    find,
   };
 };
 

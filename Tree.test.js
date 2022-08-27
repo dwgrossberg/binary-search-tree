@@ -161,7 +161,6 @@ describe("Tree factory properties & methods", () => {
   });
   test("delete(root, val) correctly removes a node with two children", () => {
     tree1.deleteVal(tree1.root, 324);
-    console.log(tree1.root);
     expect(tree1.root).toMatchObject({
       data: 8,
       leftChild: {
@@ -198,6 +197,17 @@ describe("Tree factory properties & methods", () => {
           rightChild: null,
         },
       },
+    });
+  });
+  test("find() accepts a value and returns a node with the given value", () => {
+    expect(tree1.find(tree1.root, 6345)).toMatchObject({
+      data: 6345,
+      leftChild: {
+        data: 93,
+        leftChild: null,
+        rightChild: null,
+      },
+      rightChild: null,
     });
   });
 });
