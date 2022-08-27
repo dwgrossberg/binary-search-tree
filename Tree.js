@@ -39,17 +39,28 @@ const Tree = (inputArray) => {
       root.leftChild = deleteVal(root.leftChild, val);
     } else if (val > root.data) {
       root.rightChild = deleteVal(root.rightChild, val);
-    }
-    // if val == root.data
+    } // if val == root.data
     else {
       // if node has no children or one child
       if (root.leftChild === null) {
         return root.rightChild;
       } else if (root.rightChild === null) {
         return root.leftChild;
-      }
+      } // for nodes with two children, find the inorder successor
+      root.data = minValue(root.rightChild);
+      // and delete the inorder successor
+      root.rightChild = deleteVal(root.rightChild, root.data);
     }
     return root;
+  };
+
+  const minValue = (root) => {
+    let minV = root.data;
+    while (root.leftChild != null) {
+      minV = root.leftChild.data;
+      root = root.leftChild;
+    }
+    return minV;
   };
 
   const array = [...new Set(mergeSort(inputArray))];

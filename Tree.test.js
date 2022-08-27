@@ -114,9 +114,9 @@ describe("Tree factory properties & methods", () => {
       },
     });
   });
-  test("deleteVal(root, val) correctly removes a leaf node", () => {
+  test("deleteVal(root, val) correctly removes a leaf node and a node with one child", () => {
     tree1.deleteVal(tree1.root, 3);
-    console.log(tree1.root);
+    tree1.deleteVal(tree1.root, 5);
     expect(tree1.root).toMatchObject({
       data: 8,
       leftChild: {
@@ -127,13 +127,9 @@ describe("Tree factory properties & methods", () => {
           rightChild: null,
         },
         rightChild: {
-          data: 5,
+          data: 7,
           leftChild: null,
-          rightChild: {
-            data: 7,
-            leftChild: null,
-            rightChild: null,
-          },
+          rightChild: null,
         },
       },
       rightChild: {
@@ -163,6 +159,45 @@ describe("Tree factory properties & methods", () => {
       },
     });
   });
-  //   test("delete(root, val) correctly removes a node with one child");
-  //   test("delete(root, val) correctly removes a node with two children");
+  test("delete(root, val) correctly removes a node with two children", () => {
+    tree1.deleteVal(tree1.root, 324);
+    console.log(tree1.root);
+    expect(tree1.root).toMatchObject({
+      data: 8,
+      leftChild: {
+        data: 4,
+        leftChild: {
+          data: 1,
+          leftChild: null,
+          rightChild: null,
+        },
+        rightChild: {
+          data: 7,
+          leftChild: null,
+          rightChild: null,
+        },
+      },
+      rightChild: {
+        data: 67,
+        leftChild: {
+          data: 9,
+          leftChild: null,
+          rightChild: {
+            data: 23,
+            leftChild: null,
+            rightChild: null,
+          },
+        },
+        rightChild: {
+          data: 6345,
+          leftChild: {
+            data: 93,
+            leftChild: null,
+            rightChild: null,
+          },
+          rightChild: null,
+        },
+      },
+    });
+  });
 });
