@@ -80,7 +80,6 @@ const Tree = (inputArray) => {
     if (root === null) return [];
     const queue = [root];
     const result = [];
-
     while (queue.length > 0) {
       const node = queue.shift();
       if (node.leftChild !== null) queue.push(node.leftChild);
@@ -88,14 +87,24 @@ const Tree = (inputArray) => {
       if (callback) callback(node);
       else result.push(node.data);
     }
-    if (!callback) return result;
+    return result;
+  };
+
+  // Depth-First Search Traversal
+  const preorderData = [];
+  const inorderData = [];
+  const postorderData = [];
+  // preorder : root, left, right
+  const preorder = (root) => {
+    if (root === null) return [];
+    preorderData.push(root.data);
+    if (root.leftChild !== null) preorder(root.leftChild);
+    if (root.rightChild !== null) preorder(root.rightChild);
+    return preorderData;
   };
 
   const array = [...new Set(mergeSort(inputArray))];
-  let root = buildTree(array, 0, array.length - 1);
-  const preOrderData = [];
-  const inOrderData = [];
-  const postOrderData = [];
+  const root = buildTree(array, 0, array.length - 1);
 
   return {
     array,
@@ -104,6 +113,7 @@ const Tree = (inputArray) => {
     deleteVal,
     find,
     levelOrder,
+    preorder,
   };
 };
 

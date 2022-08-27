@@ -213,4 +213,12 @@ describe("Tree factory properties & methods", () => {
   test("levelOrder(callback) returns each node's data level by level", () => {
     expect(tree1.levelOrder()).toStrictEqual([8, 4, 67, 1, 7, 9, 6345, 23, 93]);
   });
+  test("preorder(callback) returns each node's data in preorder (root, left, right)", () => {
+    expect(tree1.preorder(tree1.root)).toStrictEqual([
+      8, 4, 1, 7, 67, 9, 23, 6345, 93,
+    ]);
+    expect(tree2.preorder(tree2.root)).toStrictEqual([
+      0.7, -4, -7, -3, 0.1, 40, 0.9, 23, 500, 800,
+    ]);
+  });
 });
