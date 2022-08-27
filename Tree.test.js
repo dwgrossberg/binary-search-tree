@@ -62,7 +62,7 @@ describe("Tree factory properties & methods", () => {
       },
     });
   });
-  test("insertVal(value) correctly inserts a new value as a child of a leaf node", () => {
+  test("insertVal(root, value) correctly inserts a new value as a child of a leaf node", () => {
     tree1.insertVal(tree1.root, 93);
     expect(tree1.root).toMatchObject({
       data: 8,
@@ -114,4 +114,55 @@ describe("Tree factory properties & methods", () => {
       },
     });
   });
+  test("deleteVal(root, val) correctly removes a leaf node", () => {
+    tree1.deleteVal(tree1.root, 3);
+    console.log(tree1.root);
+    expect(tree1.root).toMatchObject({
+      data: 8,
+      leftChild: {
+        data: 4,
+        leftChild: {
+          data: 1,
+          leftChild: null,
+          rightChild: null,
+        },
+        rightChild: {
+          data: 5,
+          leftChild: null,
+          rightChild: {
+            data: 7,
+            leftChild: null,
+            rightChild: null,
+          },
+        },
+      },
+      rightChild: {
+        data: 67,
+        leftChild: {
+          data: 9,
+          leftChild: null,
+          rightChild: {
+            data: 23,
+            leftChild: null,
+            rightChild: null,
+          },
+        },
+        rightChild: {
+          data: 324,
+          leftChild: {
+            data: 93,
+            leftChild: null,
+            rightChild: null,
+          },
+          rightChild: {
+            data: 6345,
+            leftChild: null,
+            rightChild: null,
+          },
+        },
+      },
+    });
+  });
+  //   test("delete(root, val) correctly removes a node with one child");
+  //   test("delete(root, val) correctly removes a node with two children");
 });

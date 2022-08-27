@@ -22,12 +22,33 @@ const Tree = (inputArray) => {
       return root;
     }
     // otherwise recur down the tree
-    if (root.data > val) {
+    if (val < root.data) {
       root.leftChild = insertVal(root.leftChild, val);
-    } else if (root.data < val) {
+    } else if (val > root.data) {
       root.rightChild = insertVal(root.rightChild, val);
     }
     // return the unchanged root node
+    return root;
+  };
+
+  const deleteVal = (root, val) => {
+    // base case - tree is empty
+    if (root === null) return root;
+    // otherwise recur down the tree
+    if (val < root.data) {
+      root.leftChild = deleteVal(root.leftChild, val);
+    } else if (val > root.data) {
+      root.rightChild = deleteVal(root.rightChild, val);
+    }
+    // if val == root.data
+    else {
+      // if node has no children or one child
+      if (root.leftChild === null) {
+        return root.rightChild;
+      } else if (root.rightChild === null) {
+        return root.leftChild;
+      }
+    }
     return root;
   };
 
@@ -41,6 +62,7 @@ const Tree = (inputArray) => {
     array,
     root,
     insertVal,
+    deleteVal,
   };
 };
 
