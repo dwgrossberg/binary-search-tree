@@ -210,4 +210,7 @@ describe("Tree factory properties & methods", () => {
       rightChild: null,
     });
   });
+  test("levelOrder(callback) returns each node's data level by level", () => {
+    expect(tree1.levelOrder()).toStrictEqual([8, 4, 67, 1, 7, 9, 6345, 23, 93]);
+  });
 });

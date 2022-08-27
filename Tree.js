@@ -74,6 +74,23 @@ const Tree = (inputArray) => {
     return root;
   };
 
+  // Breadth-First Search Traversal
+  // using a queue to print node values level by level
+  const levelOrder = (callback) => {
+    if (root === null) return [];
+    const queue = [root];
+    const result = [];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      if (node.leftChild !== null) queue.push(node.leftChild);
+      if (node.rightChild !== null) queue.push(node.rightChild);
+      if (callback) callback(node);
+      else result.push(node.data);
+    }
+    if (!callback) return result;
+  };
+
   const array = [...new Set(mergeSort(inputArray))];
   let root = buildTree(array, 0, array.length - 1);
   const preOrderData = [];
@@ -86,6 +103,7 @@ const Tree = (inputArray) => {
     insertVal,
     deleteVal,
     find,
+    levelOrder,
   };
 };
 
