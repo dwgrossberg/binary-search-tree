@@ -22,20 +22,20 @@ describe("Tree factory properties & methods", () => {
         data: 4,
         leftChild: {
           data: 1,
-          leftChild: undefined,
+          leftChild: null,
           rightChild: {
             data: 3,
-            leftChild: undefined,
-            rightChild: undefined,
+            leftChild: null,
+            rightChild: null,
           },
         },
         rightChild: {
           data: 5,
-          leftChild: undefined,
+          leftChild: null,
           rightChild: {
             data: 7,
-            leftChild: undefined,
-            rightChild: undefined,
+            leftChild: null,
+            rightChild: null,
           },
         },
       },
@@ -43,57 +43,72 @@ describe("Tree factory properties & methods", () => {
         data: 67,
         leftChild: {
           data: 9,
-          leftChild: undefined,
+          leftChild: null,
           rightChild: {
             data: 23,
-            leftChild: undefined,
-            rightChild: undefined,
+            leftChild: null,
+            rightChild: null,
           },
         },
         rightChild: {
           data: 324,
-          leftChild: undefined,
+          leftChild: null,
           rightChild: {
             data: 6345,
-            leftChild: undefined,
-            rightChild: undefined,
+            leftChild: null,
+            rightChild: null,
           },
         },
       },
     });
-    expect(tree2.root).toMatchObject({
-      data: 0.7,
+  });
+  test("insertVal(value) correctly inserts a new value as a child of a leaf node", () => {
+    tree1.insertVal(tree1.root, 93);
+    expect(tree1.root).toMatchObject({
+      data: 8,
       leftChild: {
-        data: -4,
-        leftChild: { data: -7, leftChild: undefined, rightChild: undefined },
-        rightChild: {
-          data: -3,
-          leftChild: undefined,
+        data: 4,
+        leftChild: {
+          data: 1,
+          leftChild: null,
           rightChild: {
-            data: 0.1,
-            leftChild: undefined,
-            rightChild: undefined,
+            data: 3,
+            leftChild: null,
+            rightChild: null,
+          },
+        },
+        rightChild: {
+          data: 5,
+          leftChild: null,
+          rightChild: {
+            data: 7,
+            leftChild: null,
+            rightChild: null,
           },
         },
       },
       rightChild: {
-        data: 40,
+        data: 67,
         leftChild: {
-          data: 0.9,
-          leftChild: undefined,
+          data: 9,
+          leftChild: null,
           rightChild: {
             data: 23,
-            leftChild: undefined,
-            rightChild: undefined,
+            leftChild: null,
+            rightChild: null,
           },
         },
         rightChild: {
-          data: 500,
-          leftChild: undefined,
+          data: 324,
+          leftChild: {
+            data: 93,
+            leftChild: null,
+            rightChild: null,
+          },
           rightChild: {
-            data: 800,
-            leftChild: undefined,
-            rightChild: undefined,
+            data: 6345,
+            leftChild: null,
+            rightChild: null,
           },
         },
       },
