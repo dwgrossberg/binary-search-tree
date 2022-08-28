@@ -74,8 +74,8 @@ const Tree = (inputArray) => {
     return root;
   };
 
-  // Breadth-First Search Traversal
-  // using a queue to print node values level by level
+  // Breadth-First Search
+  // Traversal using a queue to print node values level by level
   const levelOrder = (callback) => {
     if (root === null) return [];
     const queue = [root];
@@ -90,17 +90,26 @@ const Tree = (inputArray) => {
     return result;
   };
 
-  // Depth-First Search Traversal
-  const preorderData = [];
-  const inorderData = [];
-  const postorderData = [];
-  // preorder : root, left, right
-  const preorder = (root) => {
+  // Depth-First Search
+  const preOrderData = [];
+  const inOrderData = [];
+  const postOrderData = [];
+
+  // Recursive preOrder traversal : root, left, right
+  const preOrder = (root) => {
     if (root === null) return [];
-    preorderData.push(root.data);
-    if (root.leftChild !== null) preorder(root.leftChild);
-    if (root.rightChild !== null) preorder(root.rightChild);
-    return preorderData;
+    preOrderData.push(root.data);
+    if (root.leftChild !== null) preOrder(root.leftChild);
+    if (root.rightChild !== null) preOrder(root.rightChild);
+    return preOrderData;
+  };
+
+  const inOrder = (root) => {
+    if (root === null) return [];
+    if (root.leftChild !== null) inOrder(root.leftChild);
+    inOrderData.push(root.data);
+    if (root.rightChild !== null) inOrder(root.rightChild);
+    return inOrderData;
   };
 
   const array = [...new Set(mergeSort(inputArray))];
@@ -113,7 +122,8 @@ const Tree = (inputArray) => {
     deleteVal,
     find,
     levelOrder,
-    preorder,
+    preOrder,
+    inOrder,
   };
 };
 
