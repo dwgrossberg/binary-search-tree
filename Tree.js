@@ -15,6 +15,9 @@ const Tree = (inputArray) => {
     return root;
   };
 
+  const array = [...new Set(mergeSort(inputArray))];
+  const root = buildTree(array, 0, array.length - 1);
+
   const insertVal = (root, val) => {
     // base case - tree is empty
     if (root === null) {
@@ -131,17 +134,17 @@ const Tree = (inputArray) => {
   };
 
   // Depth is defined as the number of edges in the longest path from a given node to the tree’s root node
-  const depth = (node) => {
+  const depth = (node, rootNode = root) => {
     let level = -1;
-    if (node === null || !node) return level;
-    if (root.data === node.data) return level + 1;
-    if (depth(root.leftChild) >= 0) return level + 1;
-    if (depth(root.rightChild) >= 0) return level + 1;
-    return level;
+    if (node === null || !node || find(rootNode, node) === false) return level;
+    if (node.data === rootNode.data) return level + 1;
+    const left = depth(node, rootNode.leftChild) + 1;
+    const right = depth(node, rootNode.rightChild) + 1;
+    return Math.max(left, right);
+    // if (root === node) return level + 1;
+    // if (depth(node, root.leftChild) >= 0) return level + 1;
+    // if (depth(node, root.rightChild) >= 0) return level + 1;
   };
-
-  const array = [...new Set(mergeSort(inputArray))];
-  const root = buildTree(array, 0, array.length - 1);
 
   return {
     array,
