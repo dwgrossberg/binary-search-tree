@@ -232,4 +232,12 @@ describe("Tree factory properties & methods", () => {
       -7, -4, -3, 0.1, 0.7, 0.9, 23, 40, 500, 800,
     ]);
   });
+  test("postOrder(root) returns each node's data in postorder ( left, right, root)", () => {
+    expect(tree1.postOrder(tree1.root)).toStrictEqual([
+      1, 7, 4, 23, 9, 93, 6345, 67, 8,
+    ]);
+    expect(tree2.postOrder(tree2.root)).toStrictEqual([
+      -7, 0.1, -3, -4, 23, 0.9, 800, 500, 40, 0.7,
+    ]);
+  });
 });

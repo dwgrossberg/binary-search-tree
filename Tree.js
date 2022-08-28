@@ -104,12 +104,21 @@ const Tree = (inputArray) => {
     return preOrderData;
   };
 
+  // Recursive inOrder traversal : left, root, right
   const inOrder = (root) => {
     if (root === null) return [];
     if (root.leftChild !== null) inOrder(root.leftChild);
     inOrderData.push(root.data);
     if (root.rightChild !== null) inOrder(root.rightChild);
     return inOrderData;
+  };
+
+  const postOrder = (root) => {
+    if (root === null) return [];
+    if (root.leftChild !== null) postOrder(root.leftChild);
+    if (root.rightChild !== null) postOrder(root.rightChild);
+    postOrderData.push(root.data);
+    return postOrderData;
   };
 
   const array = [...new Set(mergeSort(inputArray))];
@@ -124,6 +133,7 @@ const Tree = (inputArray) => {
     levelOrder,
     preOrder,
     inOrder,
+    postOrder,
   };
 };
 
