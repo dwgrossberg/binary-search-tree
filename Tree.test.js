@@ -240,4 +240,16 @@ describe("Tree factory properties & methods", () => {
       -7, 0.1, -3, -4, 23, 0.9, 800, 500, 40, 0.7,
     ]);
   });
+  test("height(node) accepts a node as an arg and returns its height from leaf", () => {
+    expect(tree1.height()).toBe(-1);
+    expect(tree1.height(tree1.root)).toBe(3);
+    expect(tree1.height(tree1.root.leftChild.leftChild)).toBe(0);
+    expect(tree1.height(tree1.root.rightChild.rightChild)).toBe(1);
+  });
+  test("depth(node) accepts a node as an arg and returns its depth from root", () => {
+    expect(tree1.depth()).toBe(-1);
+    expect(tree1.depth(tree1.root)).toBe(0);
+    expect(tree1.depth(tree1.root.leftChild.leftChild)).toBe(2);
+    expect(tree1.depth(tree1.root.rightChild)).toBe(1);
+  });
 });

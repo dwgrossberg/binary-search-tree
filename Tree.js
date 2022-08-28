@@ -113,12 +113,31 @@ const Tree = (inputArray) => {
     return inOrderData;
   };
 
+  // Recursive postOrder traversal : left, right, root
   const postOrder = (root) => {
     if (root === null) return [];
     if (root.leftChild !== null) postOrder(root.leftChild);
     if (root.rightChild !== null) postOrder(root.rightChild);
     postOrderData.push(root.data);
     return postOrderData;
+  };
+
+  // Height is defined as the number of edges in the longest path from a given node to a leaf node
+  const height = (node) => {
+    if (node === null || !node) return -1;
+    const left = height(node.leftChild);
+    const right = height(node.rightChild);
+    return Math.max(left, right) + 1;
+  };
+
+  // Depth is defined as the number of edges in the longest path from a given node to the tree’s root node
+  const depth = (node) => {
+    let level = -1;
+    if (node === null || !node) return level;
+    if (root.data === node.data) return level + 1;
+    if (depth(root.leftChild) >= 0) return level + 1;
+    if (depth(root.rightChild) >= 0) return level + 1;
+    return level;
   };
 
   const array = [...new Set(mergeSort(inputArray))];
@@ -134,6 +153,8 @@ const Tree = (inputArray) => {
     preOrder,
     inOrder,
     postOrder,
+    height,
+    depth,
   };
 };
 
