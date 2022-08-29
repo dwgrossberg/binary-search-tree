@@ -66,15 +66,15 @@ const Tree = (inputArray) => {
     return minV;
   };
 
-  const find = (root, value) => {
-    if (root === null) return false;
-    if (root.data === value) return root;
-    if (root.data > value) {
-      return find(root.leftChild, value);
-    } else if (root.data < value) {
-      return find(root.rightChild, value);
+  const find = (val, rootNode = root) => {
+    if (rootNode === null) return false;
+    if (rootNode.data === val) return rootNode;
+    if (rootNode.data > val) {
+      return find(val, rootNode.leftChild);
+    } else if (rootNode.data < val) {
+      return find(val, rootNode.rightChild);
     }
-    return root;
+    return rootNode;
   };
 
   // Breadth-First Search
@@ -128,7 +128,7 @@ const Tree = (inputArray) => {
   // Height is defined as the number of edges in the longest path from a given node to a leaf node
   const height = (node) => {
     // base case
-    if (node === null || !node || find(root, node) === false) return -1;
+    if (node === null || !node || find(node) === false) return -1;
     const left = height(node.leftChild);
     const right = height(node.rightChild);
     return Math.max(left, right) + 1;
