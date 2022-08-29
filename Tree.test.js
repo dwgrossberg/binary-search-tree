@@ -63,7 +63,7 @@ describe("Tree factory properties & methods", () => {
     });
   });
   test("insertVal(root, value) correctly inserts a new value as a child of a leaf node", () => {
-    tree1.insertVal(tree1.root, 93);
+    tree1.insertVal(93);
     expect(tree1.root).toMatchObject({
       data: 8,
       leftChild: {
@@ -115,8 +115,8 @@ describe("Tree factory properties & methods", () => {
     });
   });
   test("deleteVal(root, val) correctly removes a leaf node and a node with one child", () => {
-    tree1.deleteVal(tree1.root, 3);
-    tree1.deleteVal(tree1.root, 5);
+    tree1.deleteVal(3);
+    tree1.deleteVal(5);
     expect(tree1.root).toMatchObject({
       data: 8,
       leftChild: {
@@ -160,7 +160,7 @@ describe("Tree factory properties & methods", () => {
     });
   });
   test("delete(root, val) correctly removes a node with two children", () => {
-    tree1.deleteVal(tree1.root, 324);
+    tree1.deleteVal(324);
     expect(tree1.root).toMatchObject({
       data: 8,
       leftChild: {
@@ -210,33 +210,27 @@ describe("Tree factory properties & methods", () => {
       rightChild: null,
     });
   });
-  test("levelOrder(callback) returns each node's data level by level", () => {
+  test("levelOrder() returns each node's data level by level", () => {
     expect(tree1.levelOrder()).toStrictEqual([8, 4, 67, 1, 7, 9, 6345, 23, 93]);
     expect(tree2.levelOrder()).toStrictEqual([
       0.7, -4, 40, -7, -3, 0.9, 500, 0.1, 23, 800,
     ]);
   });
-  test("preOrder(root) returns each node's data in preorder (root, left, right)", () => {
-    expect(tree1.preOrder(tree1.root)).toStrictEqual([
-      8, 4, 1, 7, 67, 9, 23, 6345, 93,
-    ]);
-    expect(tree2.preOrder(tree2.root)).toStrictEqual([
+  test("preOrder() returns each node's data in preorder (root, left, right)", () => {
+    expect(tree1.preOrder()).toStrictEqual([8, 4, 1, 7, 67, 9, 23, 6345, 93]);
+    expect(tree2.preOrder()).toStrictEqual([
       0.7, -4, -7, -3, 0.1, 40, 0.9, 23, 500, 800,
     ]);
   });
-  test("inOrder(root) returns each node's data in inorder ( left, root, right)", () => {
-    expect(tree1.inOrder(tree1.root)).toStrictEqual([
-      1, 4, 7, 8, 9, 23, 67, 93, 6345,
-    ]);
-    expect(tree2.inOrder(tree2.root)).toStrictEqual([
+  test("inOrder() returns each node's data in inorder ( left, root, right)", () => {
+    expect(tree1.inOrder()).toStrictEqual([1, 4, 7, 8, 9, 23, 67, 93, 6345]);
+    expect(tree2.inOrder()).toStrictEqual([
       -7, -4, -3, 0.1, 0.7, 0.9, 23, 40, 500, 800,
     ]);
   });
-  test("postOrder(root) returns each node's data in postorder ( left, right, root)", () => {
-    expect(tree1.postOrder(tree1.root)).toStrictEqual([
-      1, 7, 4, 23, 9, 93, 6345, 67, 8,
-    ]);
-    expect(tree2.postOrder(tree2.root)).toStrictEqual([
+  test("postOrder() returns each node's data in postorder ( left, right, root)", () => {
+    expect(tree1.postOrder()).toStrictEqual([1, 7, 4, 23, 9, 93, 6345, 67, 8]);
+    expect(tree2.postOrder()).toStrictEqual([
       -7, 0.1, -3, -4, 23, 0.9, 800, 500, 40, 0.7,
     ]);
   });
@@ -247,9 +241,12 @@ describe("Tree factory properties & methods", () => {
     expect(tree1.height(tree1.root.rightChild.rightChild)).toBe(1);
   });
   test("depth(node) accepts a node as an arg and returns its depth from root", () => {
-    expect(tree1.depth()).toBe(-1);
-    expect(tree1.depth(tree1.root)).toBe(0);
-    expect(tree1.depth(tree1.root.leftChild.leftChild)).toBe(2);
-    expect(tree1.depth(tree1.root.rightChild)).toBe(1);
+    expect(tree1.depth(tree1.root)).toBe(-1);
+    expect(tree1.depth(tree1.root, tree1.root)).toBe(0);
+    expect(tree1.depth(tree1.root, tree1.root.leftChild)).toBe(1);
+    expect(tree1.depth(tree1.root, tree1.root.rightChild.leftChild)).toBe(2);
+    expect(
+      tree1.depth(tree1.root, tree1.root.rightChild.leftChild.rightChild)
+    ).toBe(3);
   });
 });
