@@ -129,9 +129,7 @@ const Tree = (inputArray) => {
   const height = (node) => {
     // base case
     if (node === null || !node || find(node) === false) return -1;
-    const left = height(node.leftChild);
-    const right = height(node.rightChild);
-    return Math.max(left, right) + 1;
+    return Math.max(height(node.leftChild), height(node.rightChild)) + 1;
   };
 
   // Depth is defined as the number of edges in the longest path from a given node to the tree’s root node
@@ -153,6 +151,19 @@ const Tree = (inputArray) => {
     return level;
   };
 
+  const isBalanced = (rootNode = root) => {
+    // base case
+    if (rootNode === null) return true;
+    if (
+      Math.abs(height(rootNode.leftChild - height(rootNode.rightChild))) <= 1 &&
+      isBalanced(rootNode.leftChild) === true &&
+      isBalanced(rootNode.rightChild) === true
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return {
     array,
     root,
@@ -165,6 +176,7 @@ const Tree = (inputArray) => {
     postOrder,
     height,
     depth,
+    isBalanced,
   };
 };
 

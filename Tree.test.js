@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import Tree from "../binary-search-tree/Tree";
-import Node from "../binary-search-tree/Node";
 
 const tree1 = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 const tree2 = Tree([0.1, 0.7, -4, 23, 800, 0.9, 40, -3, 500, -7]);
@@ -248,5 +247,8 @@ describe("Tree factory properties & methods", () => {
     expect(
       tree1.depth(tree1.root, tree1.root.rightChild.leftChild.rightChild)
     ).toBe(3);
+  });
+  test("isBalanced() checks whether or not the tree is balanced", () => {
+    expect(tree1.isBalanced()).toBe(true);
   });
 });
