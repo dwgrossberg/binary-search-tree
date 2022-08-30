@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import Tree from "../binary-search-tree/Tree";
+import driver from "./driver";
 
 const tree1 = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 const tree2 = Tree([0.1, 0.7, -4, 23, 800, 0.9, 40, -3, 500, -7]);
@@ -260,3 +261,5 @@ describe("Tree factory properties & methods", () => {
     expect(tree1.isBalanced()).toBe(true);
   });
 });
+
+driver();

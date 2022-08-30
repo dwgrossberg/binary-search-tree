@@ -94,33 +94,32 @@ const Tree = (inputArray) => {
   };
 
   // Depth-First Search
-  const preOrderData = [];
-  const inOrderData = [];
-  const postOrderData = [];
-
   // Recursive preOrder traversal : root, left, right
-  const preOrder = (rootNode = root) => {
+  const preOrder = (rootNode = root, preOrderData = []) => {
     if (rootNode === null) return [];
     preOrderData.push(rootNode.data);
-    if (rootNode.leftChild !== null) preOrder(rootNode.leftChild);
-    if (rootNode.rightChild !== null) preOrder(rootNode.rightChild);
+    if (rootNode.leftChild !== null) preOrder(rootNode.leftChild, preOrderData);
+    if (rootNode.rightChild !== null)
+      preOrder(rootNode.rightChild, preOrderData);
     return preOrderData;
   };
 
   // Recursive inOrder traversal : left, root, right
-  const inOrder = (rootNode = root) => {
+  const inOrder = (rootNode = root, inOrderData = []) => {
     if (rootNode === null) return [];
-    if (rootNode.leftChild !== null) inOrder(rootNode.leftChild);
+    if (rootNode.leftChild !== null) inOrder(rootNode.leftChild, inOrderData);
     inOrderData.push(rootNode.data);
-    if (rootNode.rightChild !== null) inOrder(rootNode.rightChild);
+    if (rootNode.rightChild !== null) inOrder(rootNode.rightChild, inOrderData);
     return inOrderData;
   };
 
   // Recursive postOrder traversal : left, right, root
-  const postOrder = (rootNode = root) => {
+  const postOrder = (rootNode = root, postOrderData = []) => {
     if (rootNode === null) return [];
-    if (rootNode.leftChild !== null) postOrder(rootNode.leftChild);
-    if (rootNode.rightChild !== null) postOrder(rootNode.rightChild);
+    if (rootNode.leftChild !== null)
+      postOrder(rootNode.leftChild, postOrderData);
+    if (rootNode.rightChild !== null)
+      postOrder(rootNode.rightChild, postOrderData);
     postOrderData.push(rootNode.data);
     return postOrderData;
   };
