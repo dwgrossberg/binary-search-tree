@@ -16,7 +16,7 @@ const Tree = (inputArray) => {
   };
 
   const array = [...new Set(mergeSort(inputArray))];
-  const root = buildTree(array, 0, array.length - 1);
+  let root = buildTree(array, 0, array.length - 1);
 
   const insertVal = (val, rootNode = root) => {
     // base case - tree is empty
@@ -151,17 +151,28 @@ const Tree = (inputArray) => {
     return level;
   };
 
+  const traverse = (rootNode = root, array = []) => {
+    array.push(rootNode.data);
+    if (rootNode.leftChild !== null) traverse(rootNode.leftChild, array);
+    if (rootNode.rightChild !== null) traverse(rootNode.rightChild, array);
+    return array;
+  };
+
   const isBalanced = (rootNode = root) => {
     // base case
     if (rootNode === null) return true;
     if (
-      Math.abs(height(rootNode.leftChild - height(rootNode.rightChild))) <= 1 &&
+      Math.abs(height(rootNode.leftChild) - height(rootNode.rightChild)) <= 1 &&
       isBalanced(rootNode.leftChild) === true &&
       isBalanced(rootNode.rightChild) === true
     ) {
       return true;
     }
     return false;
+  };
+
+  const reBalance = (rootNode = root) => {
+    return isBalanced(rootNode) ? rootNode : (root = Tree(traverse()).root);
   };
 
   return {
@@ -177,6 +188,7 @@ const Tree = (inputArray) => {
     height,
     depth,
     isBalanced,
+    reBalance,
   };
 };
 

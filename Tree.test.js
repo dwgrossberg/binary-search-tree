@@ -250,5 +250,13 @@ describe("Tree factory properties & methods", () => {
   });
   test("isBalanced() checks whether or not the tree is balanced", () => {
     expect(tree1.isBalanced()).toBe(true);
+    tree1.insertVal(101);
+    tree1.insertVal(102);
+    tree1.insertVal(103);
+    expect(tree1.isBalanced()).toBe(false);
+  });
+  test("reBalance() will re-balance and unbalanced tree", () => {
+    tree1.reBalance();
+    expect(tree1.isBalanced()).toBe(true);
   });
 });
