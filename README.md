@@ -15,6 +15,8 @@ A JavaScript module that builds a balanced binary search tree from an array of n
 - `isBalanced()` checks if the tree is balanced and returns true or false
 - `reBalance()` re-balances an unbalanced tree
 
+Module includes a simple `driver()` script which will initialize a new tree of random numbers and display its various methods.
+
 ---
 
 Written via a TDD approach, using Jest.
